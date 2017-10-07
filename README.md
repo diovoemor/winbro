@@ -10,5 +10,5 @@ export definition file and build instructions.
 
     To use:
 
-    Place winbro.bat in brotly source's base folder and run.
+    Place winbro.bat in Brotli source's base folder and run.
 
