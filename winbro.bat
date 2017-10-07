@@ -56,9 +56,6 @@ sub read_file {
 
 ##################################################################
 #PRIVATE#
-sub getdata {
-  return $h,$r,$m,$d,$da,$db,$dc;
-}
 
 sub swapstuff {
   my (@stuff)=@_;
