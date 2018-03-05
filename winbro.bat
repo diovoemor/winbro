@@ -22,7 +22,7 @@ goto endofperl
 $wbv = '1.0.0';
 $wbcy = '2017';
 #
-my $brolib = 'brotli';
+my $brolib = 'libbrotli';
 my $sver= 'common/version.h';
 my $obv=  'include/brotli/brotliv.h';
 my $orc = 'brotli.rc';
@@ -281,14 +281,14 @@ BROEXE = bro
 
 LIBNAME = <BROLIB>
 RCFILE  = <RCFILE>
-COMOBJ  = $(BP)common/dictionary.obj
+COMOBJ  = $(BP)common/dictionary.obj $(BP)common/transform.obj
 DECOBJS = $(BP)dec/bit_reader.obj $(BP)dec/decode.obj $(BP)dec/huffman.obj $(BP)dec/state.obj
 ENCOBJS = $(BP)enc/backward_references.obj $(BP)enc/backward_references_hq.obj \
           $(BP)enc/block_splitter.obj $(BP)enc/bit_cost.obj $(BP)enc/brotli_bit_stream.obj \
           $(BP)enc/cluster.obj $(BP)enc/compress_fragment.obj $(BP)enc/compress_fragment_two_pass.obj \
-          $(BP)enc/dictionary_hash.obj $(BP)enc/encode.obj $(BP)enc/entropy_encode.obj $(BP)enc/histogram.obj \
-          $(BP)enc/literal_cost.obj $(BP)enc/memory.obj $(BP)enc/metablock.obj $(BP)enc/static_dict.obj \
-          $(BP)enc/utf8_util.obj
+          $(BP)enc/dictionary_hash.obj $(BP)enc/encode.obj $(BP)enc/encoder_dict.obj $(BP)enc/entropy_encode.obj \
+          $(BP)enc/histogram.obj $(BP)enc/literal_cost.obj $(BP)enc/memory.obj $(BP)enc/metablock.obj \
+          $(BP)enc/static_dict.obj $(BP)enc/utf8_util.obj
 
           
 # intro comn decode encode install static cleanman cleanobj cleanrel outro res
@@ -414,7 +414,6 @@ BrotliDecoderIsUsed
 BrotliDecoderStateCleanup
 BrotliDecoderStateCleanupAfterMetablock
 BrotliDecoderStateInit
-BrotliDecoderStateInitWithCustomAllocators
 BrotliDecoderStateMetablockBegin
 BrotliDecoderTakeOutput
 BrotliDecoderVersion
@@ -432,6 +431,7 @@ BrotliEncoderVersion
 BrotliEstimateBitCostsForLiterals
 BrotliFindAllStaticDictionaryMatches
 BrotliFree
+BrotliGetTransforms
 BrotliHistogramBitCostDistanceCommand
 BrotliHistogramBitCostDistanceDistance
 BrotliHistogramBitCostDistanceLiteral
@@ -446,6 +446,7 @@ BrotliHistogramRemapDistance
 BrotliHistogramRemapLiteral
 BrotliInitBitReader
 BrotliInitBlockSplit
+BrotliInitEncoderDictionary
 BrotliInitMemoryManager
 BrotliInitZopfliNodes
 BrotliIsMostlyUTF8
@@ -461,6 +462,7 @@ BrotliStoreMetaBlock
 BrotliStoreMetaBlockFast
 BrotliStoreMetaBlockTrivial
 BrotliStoreUncompressedMetaBlock
+BrotliTransformDictionaryWord
 BrotliWarmupBitReader
 BrotliWipeOutMemoryManager
 BrotliWriteHuffmanTree
