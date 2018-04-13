@@ -340,7 +340,7 @@ cleanman:
    @del /s /q *.manifest
 
 cleanrel:
-   @del /s /q *.dll *.exe *.exp *.lib *.manifest *.pdb
+   @del /s /q *.dll *.exe *.exp *.lib *.manifest *.obj *.pdb
 #   @rd /s /q $(OUTDIR)
 
 intro:
@@ -411,6 +411,7 @@ BrotliDecoderHasMoreOutput
 BrotliDecoderHuffmanTreeGroupInit
 BrotliDecoderIsFinished
 BrotliDecoderIsUsed
+BrotliDecoderSetParameter
 BrotliDecoderStateCleanup
 BrotliDecoderStateCleanupAfterMetablock
 BrotliDecoderStateInit
@@ -431,7 +432,6 @@ BrotliEncoderVersion
 BrotliEstimateBitCostsForLiterals
 BrotliFindAllStaticDictionaryMatches
 BrotliFree
-BrotliGetTransforms
 BrotliHistogramBitCostDistanceCommand
 BrotliHistogramBitCostDistanceDistance
 BrotliHistogramBitCostDistanceLiteral
@@ -446,7 +446,6 @@ BrotliHistogramRemapDistance
 BrotliHistogramRemapLiteral
 BrotliInitBitReader
 BrotliInitBlockSplit
-BrotliInitEncoderDictionary
 BrotliInitMemoryManager
 BrotliInitZopfliNodes
 BrotliIsMostlyUTF8
@@ -462,15 +461,11 @@ BrotliStoreMetaBlock
 BrotliStoreMetaBlockFast
 BrotliStoreMetaBlockTrivial
 BrotliStoreUncompressedMetaBlock
-BrotliTransformDictionaryWord
 BrotliWarmupBitReader
 BrotliWipeOutMemoryManager
 BrotliWriteHuffmanTree
 BrotliZopfliComputeShortestPath
 BrotliZopfliCreateCommands
-<SPLIT>BrotliDecoderSetCustomDictionary
-BrotliEncoderSetCustomDictionary
-BrotliStoreSyncMetaBlock
 <SPLIT>
 <SPLIT>
 <SPLIT>
