@@ -17,10 +17,10 @@ goto endofperl
 # Script Name: Winbro, my Brotli build for Windows
 # FileName: winbro.bat
 # Date: October 6, 2017
-# Copyright (c) 2017, Gregg Smith <gregg apachehaus com>
+# Copyright (c)  2017-2018,  Gregg Smith
 #
-$wbv = '1.0.0';
-$wbcy = '2017';
+$wbv = '1.0.3';
+$wbcy = '2017-2018';
 #
 my $brolib = 'libbrotli';
 my $sver= 'common/version.h';
