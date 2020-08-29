@@ -17,10 +17,11 @@ goto endofperl
 # Script Name: Winbro, my Brotli build for Windows
 # FileName: winbro.bat
 # Date: October 6, 2017
-# Copyright (c)  2017-2018,  Gregg Smith
+# Copyright (c) 2017, Gregg Smith <gregg apachehaus com>
+# svn commit -m 'Commit Message'
 #
-$wbv = '1.0.3';
-$wbcy = '2017-2018';
+$wbv = '1.0.4';
+$wbcy = '2017-2020';
 #
 my $brolib = 'libbrotli';
 my $sver= 'common/version.h';
@@ -276,19 +277,19 @@ BP  = c/
 BPW = c\ 
 BPB = \..
 !ELSE
-BROEXE = bro
+BROEXE = brotli
 !ENDIF
 
 LIBNAME = <BROLIB>
 RCFILE  = <RCFILE>
-COMOBJ  = $(BP)common/dictionary.obj $(BP)common/transform.obj
+COMOBJ  = $(BP)common/constants.obj $(BP)common/context.obj $(BP)common/dictionary.obj $(BP)common/platform.obj $(BP)common/transform.obj
 DECOBJS = $(BP)dec/bit_reader.obj $(BP)dec/decode.obj $(BP)dec/huffman.obj $(BP)dec/state.obj
 ENCOBJS = $(BP)enc/backward_references.obj $(BP)enc/backward_references_hq.obj \
-          $(BP)enc/block_splitter.obj $(BP)enc/bit_cost.obj $(BP)enc/brotli_bit_stream.obj \
-          $(BP)enc/cluster.obj $(BP)enc/compress_fragment.obj $(BP)enc/compress_fragment_two_pass.obj \
+          $(BP)enc/block_splitter.obj $(BP)enc/bit_cost.obj $(BP)enc/brotli_bit_stream.obj $(BP)enc/cluster.obj \
+          $(BP)enc/command.obj $(BP)enc/compress_fragment.obj $(BP)enc/compress_fragment_two_pass.obj \
           $(BP)enc/dictionary_hash.obj $(BP)enc/encode.obj $(BP)enc/encoder_dict.obj $(BP)enc/entropy_encode.obj \
-          $(BP)enc/histogram.obj $(BP)enc/literal_cost.obj $(BP)enc/memory.obj $(BP)enc/metablock.obj \
-          $(BP)enc/static_dict.obj $(BP)enc/utf8_util.obj
+          $(BP)enc/fast_log.obj $(BP)enc/histogram.obj $(BP)enc/literal_cost.obj $(BP)enc/memory.obj \
+          $(BP)enc/metablock.obj $(BP)enc/static_dict.obj $(BP)enc/utf8_util.obj
 
           
 # intro comn decode encode install static cleanman cleanobj cleanrel outro res
@@ -418,6 +419,7 @@ BrotliDecoderStateInit
 BrotliDecoderStateMetablockBegin
 BrotliDecoderTakeOutput
 BrotliDecoderVersion
+BrotliDefaultAllocFunc
 BrotliDestroyBlockSplit
 BrotliEncoderCompress
 BrotliEncoderCompressStream
@@ -466,6 +468,13 @@ BrotliWipeOutMemoryManager
 BrotliWriteHuffmanTree
 BrotliZopfliComputeShortestPath
 BrotliZopfliCreateCommands
+kBrotliCopyBase
+kBrotliCopyExtra
+_kBrotliContextLookupTable
+kBrotliInsBase
+kBrotliInsExtra
+kBrotliLog2Table
+_kBrotliPrefixCodeRanges
 <SPLIT>
 <SPLIT>
 <SPLIT>
